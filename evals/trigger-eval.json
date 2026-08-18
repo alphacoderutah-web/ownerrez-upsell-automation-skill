@@ -1,0 +1,31 @@
+{
+  "skill_name": "ownerrez-upsell-automation",
+  "purpose": "Tests whether Claude Code, seeing only this skill's name and description (not its body), correctly decides to consult it for in-scope requests and correctly leaves it alone for out-of-scope ones — including near-misses that deliberately overlap with adjacent OwnerRez skills (rate-setting, listing content, photo captions, Rezzy guest-messaging directives) and other platforms.",
+  "split": {
+    "train": 12,
+    "test": 8,
+    "note": "train informs description revisions; test is held out and only used to score the final description, to avoid overfitting to the exact tested phrasings."
+  },
+  "queries": [
+    { "query": "I manage 14 units on OwnerRez and keep manually texting my cleaner every time a guest books a late checkout. Can you help me build something that automatically pings her when that happens, and also actually charges the guest's card for the fee?", "should_trigger": true, "split": "train" },
+    { "query": "our team uses ownerrez for our beach rentals and every time someone asks about upselling early checkins were doing it by hand in the browser lol. is there a way to make this safer/automated so we dont accidentally comp someone or double charge them", "should_trigger": true, "split": "train" },
+    { "query": "We want to charge guests for extra nights when they ask to extend their stay, and OwnerRez doesn't seem to have an API for adding charges to a booking — how do I actually do this safely without risking a double charge?", "should_trigger": true, "split": "train" },
+    { "query": "Need to set up SMS alerts to our property manager whenever a check-in time changes on a booking, ideally through ownerrez itself rather than paying for another twilio number", "should_trigger": true, "split": "train" },
+    { "query": "hey so I have an ownerrez account with like 6 properties and I want an automated flow: guest asks for late checkout in the message thread, host says yes it's $50, guest says ok charge me — then I want that to just happen automatically and text my staff. is that something you can set up", "should_trigger": true, "split": "train" },
+    { "query": "Building a small nodejs worker against the ownerrez v2 api to detect when a guest agrees to an upsell in Rezzy and charge their card on file — want to make sure I don't screw up the qualification logic and charge someone who didn't actually agree", "should_trigger": true, "split": "train" },
+    { "query": "Rezzy keeps telling guests we don't allow pets when we actually do on 3 of our properties — can you help me figure out why and fix the directive?", "should_trigger": false, "split": "train" },
+    { "query": "I need to update the nightly rate on our 'Beach House' listing from $310 to $340 for the next two weekends, it's priced through PriceLabs into OwnerRez", "should_trigger": false, "split": "train" },
+    { "query": "Can you finish setting up the listing for our new property at 22 Ocean Ave — rooms, amenities, description, all of it?", "should_trigger": false, "split": "train" },
+    { "query": "One of our OwnerRez photo captions says 'Ocean view' but the room doesn't actually have one, can you find and fix it?", "should_trigger": false, "split": "train" },
+    { "query": "How do I just manually add a $100 charge to a guest's booking in OwnerRez? I'm looking at the Change Charges screen right now and don't see where to add a new line", "should_trigger": false, "split": "train" },
+    { "query": "What's the difference between OwnerRez's v1 and v2 API in terms of authentication?", "should_trigger": false, "split": "train" },
+    { "query": "can u help set up a trigger + template in ownerrez so housekeeping gets a text when a blocked off time gets added to the calendar", "should_trigger": true, "split": "test" },
+    { "query": "We keep getting Rezzy tasks flagging 'guest wants extra night' and someone on our team has to manually add the charge and collect payment every single time — I want to automate this end to end but I'm terrified of accidentally charging the wrong amount", "should_trigger": true, "split": "test" },
+    { "query": "What's the safest way to build guest-upsell charging automation on top of OwnerRez? I've heard there's no documented API for adding a charge to an existing booking", "should_trigger": true, "split": "test" },
+    { "query": "set up native ownerrez sms alerts to management + housekeeping whenever an addon/upsell gets confirmed, don't want to pay for a separate texting service", "should_trigger": true, "split": "test" },
+    { "query": "Can you draft an email template in OwnerRez confirming a guest's reservation, mentioning check-in instructions and the wifi password?", "should_trigger": false, "split": "test" },
+    { "query": "We got a chargeback dispute on a guest's booking through Stripe, how do we respond to it?", "should_trigger": false, "split": "test" },
+    { "query": "Can you help me write a Python script that pulls all upcoming arrivals from OwnerRez and puts them into a Google Sheet for our ops team?", "should_trigger": false, "split": "test" },
+    { "query": "I want to set up a recurring trigger in OwnerRez that emails guests a pre-arrival checklist 3 days before their trip", "should_trigger": false, "split": "test" }
+  ]
+}

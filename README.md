@@ -48,6 +48,17 @@ cp -r ownerrez-upsell-automation-skill/ownerrez-upsell-automation ~/.claude/skil
 Or drop `ownerrez-upsell-automation/` into a project's `.claude/skills/`
 instead of your personal one.
 
+## Triggering
+
+Claude decides whether to consult a skill from its name and description
+alone, before reading the body — so those need to hold up on their own.
+`evals/` has a 20-query test set (12 tuning, 8 held out) checking that this
+description reliably triggers on in-scope requests and reliably stays quiet
+on adjacent ones — including deliberate near-misses against rate-setting,
+listing content, photo captions, and Rezzy guest-messaging work. Current
+description: 100% on both splits. See `evals/README.md` for the full
+methodology and how to rerun or extend it.
+
 ## What it doesn't do
 
 - **Ship a working worker.** There is no pre-built automation here to point
